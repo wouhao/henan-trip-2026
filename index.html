@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="description" content="河南五一 · 2026 · 4晚5天 · 郑州 · 洛阳 · 安阳 · 开封">
+<title>河南五一 · 2026</title>
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --ink-2: #333;
+    --ink-3: #666;
+    --ink-4: #999;
+    --line: #e8e8e8;
+    --bg: #fafaf7;
+    --card: #fff;
+    --accent: #d4481b;
+    --soft: #f5f2ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 40px 24px 120px; }
+
+  /* HERO */
+  .hero { padding: 40px 0 56px; border-bottom: 1px solid var(--line); margin-bottom: 48px; }
+  .hero .kicker { font-size: 12px; letter-spacing: 3px; color: var(--ink-3); text-transform: uppercase; margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(34px, 7vw, 56px); line-height: 1.05; letter-spacing: -0.02em; font-weight: 900; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero .sub { margin-top: 18px; color: var(--ink-2); font-size: 16px; }
+  .hero .route {
+    margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px 14px;
+    font-size: 13px; color: var(--ink-3); letter-spacing: 0.5px;
+  }
+  .hero .route span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero .route span::after { content: "→"; color: var(--ink-4); margin-left: 14px; }
+  .hero .route span:last-child::after { display: none; }
+  .hero .meta {
+    margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border-top: 1px solid var(--line); padding-top: 20px;
+  }
+  .hero .meta > div { border-left: 1px solid var(--line); padding: 0 16px; }
+  .hero .meta > div:first-child { border-left: 0; padding-left: 0; }
+  .hero .meta .k { font-size: 11px; color: var(--ink-4); text-transform: uppercase; letter-spacing: 2px; }
+  .hero .meta .v { font-size: 22px; font-weight: 700; margin-top: 4px; letter-spacing: -0.01em; }
+  @media (max-width: 520px) {
+    .hero .meta .v { font-size: 18px; }
+  }
+
+  /* SECTION */
+  section { margin-bottom: 72px; }
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 28px; }
+  .sec-head .num {
+    font-size: 13px; letter-spacing: 2px; color: var(--accent); font-weight: 700;
+    border: 1px solid var(--accent); padding: 4px 10px; border-radius: 2px;
+  }
+  .sec-head h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.01em; }
+  .sec-head h2 small { font-size: 12px; color: var(--ink-4); font-weight: 500; margin-left: 12px; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* CARD */
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 4px;
+    padding: 22px 22px; margin-bottom: 14px;
+  }
+  .card h3 {
+    font-size: 18px; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.005em;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .card h3 .emoji { font-size: 20px; }
+  .card .meta-line {
+    font-size: 13px; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 6px;
+  }
+  .card .meta-line b { color: var(--ink); font-weight: 600; }
+  .card .cost { float: right; color: var(--accent); font-weight: 700; font-size: 16px; }
+  .card .detail { font-size: 14px; color: var(--ink-2); margin-top: 10px; }
+  .card .detail a { color: var(--ink); border-bottom: 1px dotted var(--ink-4); text-decoration: none; }
+  .card .detail a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .tag {
+    display: inline-block; font-size: 11px; padding: 2px 8px; border: 1px solid var(--line);
+    border-radius: 2px; color: var(--ink-3); letter-spacing: 0.5px;
+  }
+  .tag.hot { border-color: var(--accent); color: var(--accent); }
+
+  /* ITINERARY */
+  .day {
+    position: relative; padding-left: 28px; padding-bottom: 36px;
+    border-left: 2px solid var(--line); margin-left: 10px;
+  }
+  .day:last-child { padding-bottom: 0; }
+  .day::before {
+    content: ""; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px;
+    background: var(--accent); border-radius: 50%;
+  }
+  .day .date {
+    font-size: 14px; font-weight: 700; letter-spacing: 1px; color: var(--accent);
+    margin-bottom: 4px; text-transform: uppercase;
+  }
+  .day .route-line {
+    font-size: 20px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 18px;
+  }
+  .day .route-line .dir { color: var(--ink-4); margin: 0 6px; font-weight: 500; }
+  .step {
+    display: grid; grid-template-columns: 60px 1fr; gap: 14px; margin-bottom: 14px;
+    align-items: start;
+  }
+  .step .time {
+    font-size: 14px; font-weight: 700; letter-spacing: -0.005em; color: var(--ink);
+    padding-top: 2px;
+  }
+  .step .body {
+    border-left: 2px solid var(--line); padding-left: 14px;
+  }
+  .step.activity .body { border-left-color: var(--accent); }
+  .step .title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+  .step .title .emoji { margin-right: 6px; }
+  .step .sub { font-size: 13px; color: var(--ink-3); }
+  .step .sub b { color: var(--ink); font-weight: 600; }
+  .step .links { margin-top: 6px; font-size: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .step .links a { color: var(--ink-3); text-decoration: none; border-bottom: 1px dotted var(--ink-4); }
+  .step .links a:hover { color: var(--accent); }
+
+  /* CHECKLIST */
+  .check-row {
+    display: flex; align-items: start; gap: 14px; padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .check-row:last-child { border-bottom: 0; }
+  .check-row .icon { font-size: 18px; line-height: 1.3; min-width: 24px; }
+  .check-row .text { flex: 1; font-size: 14px; color: var(--ink-2); }
+  .check-row .text b { color: var(--ink); font-weight: 700; }
+
+  /* BUDGET */
+  .budget-table { width: 100%; border-collapse: collapse; }
+  .budget-table td { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .budget-table td:first-child { color: var(--ink-2); }
+  .budget-table td:last-child { text-align: right; font-weight: 600; font-feature-settings: "tnum"; }
+  .budget-table tr.total td { border-bottom: 0; padding-top: 20px; font-weight: 800; font-size: 18px; color: var(--accent); }
+  .budget-table tr.total td:first-child { color: var(--accent); }
+  .budget-bar {
+    height: 3px; background: var(--soft); margin-top: 24px; display: flex; border-radius: 2px; overflow: hidden;
+  }
+  .budget-bar > div { height: 100%; }
+  .budget-legend { font-size: 12px; color: var(--ink-3); margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .budget-legend .dot { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; vertical-align: middle; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 96px; padding-top: 32px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--ink-4); letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 520px) {
+    .wrap { padding: 24px 16px 80px; }
+    .hero { padding: 20px 0 36px; margin-bottom: 36px; }
+    .hero .meta { grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .hero .meta > div { padding: 0 8px; }
+    .sec-head h2 { font-size: 22px; }
+    .card { padding: 18px 16px; }
+    .step { grid-template-columns: 52px 1fr; gap: 10px; }
+    .day { padding-left: 22px; margin-left: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">2026 MAY · 4N5D</div>
+  <h1>河南五一 / <em>豫中之旅</em></h1>
+  <div class="sub">跟着讲师读一遍青铜、石窟、甲骨、汴梁</div>
+  <div class="route">
+    <span>深圳</span>
+    <span>郑州</span>
+    <span>洛阳</span>
+    <span>安阳</span>
+    <span>开封</span>
+    <span>深圳</span>
+  </div>
+  <div class="meta">
+    <div><div class="k">Dates</div><div class="v">5.1–5.5</div></div>
+    <div><div class="k">Stops</div><div class="v">4 城</div></div>
+    <div><div class="k">Sites</div><div class="v">5 处</div></div>
+  </div>
+</header>
+
+<!-- 01 LOGISTICS -->
+<section>
+  <div class="sec-head">
+    <span class="num">01</span>
+    <h2>交通与住宿 <small>LOGISTICS</small></h2>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">✈️</span>往返航班</h3>
+    <div class="meta-line"><b>5/1 周五</b> · CZ6336 · 南方航空 · 已出票</div>
+    <div class="detail">
+      深圳宝安 T3 <b>11:05</b> → 郑州新郑 T2 <b>13:35</b> · 2h30m
+    </div>
+    <div class="meta-line" style="margin-top:14px"><b>5/5 周二</b> · CZ3973 · 南方航空 · 已出票</div>
+    <div class="detail">
+      郑州新郑 T2 <b>18:45</b> → 深圳宝安 T3 <b>21:20</b> · 2h35m
+    </div>
+    <div class="detail" style="margin-top:12px">
+      <span class="tag hot">黑钻贵宾</span>
+      <span class="tag">宝安机场休息室</span>
+      <span class="tag">快速安检</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">🚗</span>全程租车</h3>
+    <div class="meta-line">
+      <b>理想 L8</b> · 42kWh 增程式 · SUV 6 座
+    </div>
+    <div class="detail">
+      5/1 <b>15:00</b> 郑州新郑机场服务点 取 → 5/5 <b>15:00</b> 同点 还 · 4 天
+    </div>
+    <div class="detail" style="margin-top:8px; color: var(--ink-3); font-size: 13px;">
+      全程无忧升级版（三保 300 万 + 乘客 50 万 + 驾驶 50 万 + 免停车费）
+    </div>
+    <div class="detail" style="margin-top:8px;">
+      <span class="tag" style="color: var(--accent); border-color: var(--accent);">⚠️ 取车前完成认证和押金</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">🏨</span>酒店</h3>
+    <div class="meta-line"><b>5/1（1晚）</b> · 郑州金水国贸 360 美仑酒店 · 亲子主题双床房</div>
+    <div class="meta-line" style="margin-top:10px"><b>5/2–5/4（2晚）</b> · 洛阳博物馆龙门大道美仑酒店 · 豪华家庭房</div>
+    <div class="meta-line" style="margin-top:10px"><b>5/4（1晚）</b> · 开封清明上河园美居酒店 · 家庭房</div>
+  </div>
+</section>
+
+<!-- 02 ITINERARY -->
+<section>
+  <div class="sec-head">
+    <span class="num">02</span>
+    <h2>每日行程 <small>ITINERARY</small></h2>
+  </div>
+
+  <div class="day">
+    <div class="date">DAY 1 · 5.1 周五</div>
+    <div class="route-line">深圳 <span class="dir">→</span> 郑州</div>
+
+    <div class="step">
+      <div class="time">11:05</div>
+      <div class="body">
+        <div class="title"><span class="emoji">✈️</span>CZ6336 起飞</div>
+        <div class="sub">深圳宝安 T3 · 先在黑钻休息室休整</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">13:35</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🛬</span>落地郑州新郑 T2</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">15:00</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🚗</span>取车 · 理想 L8</div>
+        <div class="sub">郑州新郑国际机场服务点</div>
+      </div>
+    </div>
+
+    <div class="step activity">
+      <div class="time">17:30</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🏛️</span>河南博物院｜豫博之中</div>
+        <div class="sub">讲师 <b>文杰</b> · 3h · 已含门票</div>
+        <div class="sub">集合：<b>17:30 河南博物院正南门</b></div>
+        <div class="links">
+          <a href="https://uri.amap.com/search?keyword=河南博物院&src=mapiosapi&callnative=1" target="_blank">📍 高德地图</a>        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">晚</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🏨</span>入住 · 金水国贸 360 美仑</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="date">DAY 2 · 5.2 周六</div>
+    <div class="route-line">郑州 <span class="dir">→</span> 洛阳</div>
+
+    <div class="step">
+      <div class="time">上午</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🚗</span>郑州 → 洛阳</div>
+        <div class="sub">约 130km · 1.5h · 走连霍高速</div>
+      </div>
+    </div>
+
+    <div class="step activity">
+      <div class="time">14:30</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🗿</span>龙门石窟｜龙门金刚</div>
+        <div class="sub">讲师 <b>玉刚</b> · 3.5h · 已含门票</div>
+        <div class="sub">集合：<b>14:30 龙门石窟检票口内</b>（上午版）／<b>龙门石窟东北服务区游客中心</b>（下午版）</div>
+        <div class="links">
+          <a href="https://uri.amap.com/search?keyword=龙门石窟&src=mapiosapi&callnative=1" target="_blank">📍 高德地图</a>        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">晚</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🏨</span>入住 · 洛阳博物馆龙门大道美仑</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="date">DAY 3 · 5.3 周日</div>
+    <div class="route-line">洛阳</div>
+
+    <div class="step activity">
+      <div class="time">13:45</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🏺</span>二里头夏都遗址博物馆｜最早的中国</div>
+        <div class="sub">讲师 <b>行者</b> · 3h · 已含门票</div>
+        <div class="sub">集合：<b>13:40 二里头夏都遗址博物馆入口</b></div>
+        <div class="links">
+          <a href="https://uri.amap.com/search?keyword=二里头夏都遗址博物馆&src=mapiosapi&callnative=1" target="_blank">📍 高德地图</a>        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">晚</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🍜</span>自由时间</div>
+        <div class="sub">洛阳老城区吃水席 / 不翻汤 / 洛阳肉夹馍</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="date">DAY 4 · 5.4 周一</div>
+    <div class="route-line">洛阳 <span class="dir">→</span> 安阳 <span class="dir">→</span> 开封</div>
+
+    <div class="step">
+      <div class="time">07:00</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🚗</span>洛阳 → 安阳</div>
+        <div class="sub">约 250km · 3h · <b>早出发</b>（必须 10:30 前到安阳用午餐）</div>
+      </div>
+    </div>
+
+    <div class="step activity">
+      <div class="time">14:00</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🔮</span>殷墟博物馆｜重回大邑商</div>
+        <div class="sub">讲师 <b>铃铃</b> · 3h · 已含门票</div>
+        <div class="sub">集合：<b>13:55 殷墟博物馆入口</b></div>
+        <div class="links">
+          <a href="https://uri.amap.com/search?keyword=殷墟博物馆&src=mapiosapi&callnative=1" target="_blank">📍 高德地图</a>        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">17:30</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🚗</span>安阳 → 开封</div>
+        <div class="sub">约 180km · 2h · 走京港澳/大广高速</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">晚</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🏨</span>入住 · 开封清明上河园美居</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="date">DAY 5 · 5.5 周二</div>
+    <div class="route-line">开封 <span class="dir">→</span> 郑州 <span class="dir">→</span> 深圳</div>
+
+    <div class="step activity">
+      <div class="time">09:00</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🏯</span>开封博物馆｜东京梦华</div>
+        <div class="sub">讲师 <b>时晓雪</b> · 3h · 已含门票</div>
+        <div class="sub">集合：<b>08:55 开封博物馆入口</b></div>
+        <div class="links">
+          <a href="https://uri.amap.com/search?keyword=开封博物馆&src=mapiosapi&callnative=1" target="_blank">📍 高德地图</a>        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">13:00</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🚗</span>开封 → 郑州机场</div>
+        <div class="sub">约 90km · 1.5h</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">15:00</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🔑</span>还车 · 理想 L8</div>
+        <div class="sub">郑州新郑国际机场服务点</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">18:45</div>
+      <div class="body">
+        <div class="title"><span class="emoji">✈️</span>CZ3973 起飞</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="time">21:20</div>
+      <div class="body">
+        <div class="title"><span class="emoji">🛬</span>落地深圳宝安 T3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 CHECKLIST -->
+<section>
+  <div class="sec-head">
+    <span class="num">03</span>
+    <h2>出行清单 <small>CHECKLIST</small></h2>
+  </div>
+
+  <div class="card">
+    <div class="check-row">
+      <div class="icon">✅</div>
+      <div class="text"><b>门票已含</b> — 5 场讲解团门票全部包含在团费里，不用另外买</div>
+    </div>
+    <div class="check-row">
+      <div class="icon">✅</div>
+      <div class="text"><b>机票已出票</b> — CZ6336 / CZ3973，黑钻贵宾权益可免费兑换休息室和快速安检</div>
+    </div>
+    <div class="check-row">
+      <div class="icon">⚠️</div>
+      <div class="text"><b>租车认证和押金</b> — 理想 L8 订单待完成认证，5/1 15:00 前必须搞定</div>
+    </div>
+    <div class="check-row">
+      <div class="icon">⚠️</div>
+      <div class="text"><b>讲解团合同</b> — 5 个团的合同均"待生成"，出行群二维码"待后台上传"，出发前盯一下</div>
+    </div>
+    <div class="check-row">
+      <div class="icon">⏰</div>
+      <div class="text"><b>5/4 早出发</b> — 洛阳 → 安阳 250km 3h，要在 14:00 前到殷墟集合，建议 07:00 出发</div>
+    </div>
+    <div class="check-row">
+      <div class="icon">🎒</div>
+      <div class="text"><b>必带</b> — 身份证、充电宝（≤100Wh）、运动鞋（龙门石窟+夏都遗址走路多）、防晒、常用药</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  河南五一 · 2026 · 最后更新 2026-04-22 · 内部使用
+</footer>
+
+</div>
+</body>
+</html>
